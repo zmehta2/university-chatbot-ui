@@ -10,6 +10,7 @@ const FAQDashboard = () => {
     const [expandedFAQ, setExpandedFAQ] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [editFAQ, setEditFAQ] = useState(null);
 
     useEffect(() => {
         fetchFAQs();
@@ -46,7 +47,7 @@ const FAQDashboard = () => {
         }
     };
 
-    const [editFAQ, setEditFAQ] = useState(null);
+   
 
 const handleUpdateFAQ = async () => {
   if (!editFAQ) return;
@@ -178,13 +179,87 @@ const handleUpdateFAQ = async () => {
                                         </div>
                                     )}
                                 </div>
+
+                                
                             ))}
+
+        
                         </div>
                     )}
                 </div>
             </div>
+
+            {/* Edit Modal - Moved outside the FAQ list */}
+            {editFAQ && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+                        <h2 className="text-xl font-semibold mb-4">Edit FAQ</h2>
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            handleUpdateFAQ();
+                        }}>
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        Question
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={editFAQ.question}
+                                        onChange={(e) => setEditFAQ({...editFAQ, question: e.target.value})}
+                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        Answer
+                                    </label>
+                                    <textarea
+                                        value={editFAQ.answer}
+                                        onChange={(e) => setEditFAQ({...editFAQ, answer: e.target.value})}
+                                        rows={4}
+                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        Category
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={editFAQ.category}
+                                        onChange={(e) => setEditFAQ({...editFAQ, category: e.target.value})}
+                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex justify-end space-x-3 mt-6">
+                                <button
+                                    type="button"
+                                    onClick={() => setEditFAQ(null)}
+                                    className="px-4 py-2 text-gray-700 border rounded-lg hover:bg-gray-50"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                                >
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
+
+    {/* Edit Modal */}
+   
 };
+
+
 
 export default FAQDashboard;
