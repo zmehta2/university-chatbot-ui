@@ -83,11 +83,7 @@ const Login = ({ onLogin }) => {
             </button>
           </form>
 
-          <div className="mt-4 text-sm text-gray-600">
-            <p>Demo Credentials:</p>
-            <p>Admin - username: admin, password: admin123</p>
-            <p>User - username: user, password: user123</p>
-          </div>
+          
         </div>
       </div>
     </div>
