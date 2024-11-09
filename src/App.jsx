@@ -25,18 +25,39 @@ export default function App() {
     fetchQuickReplies();
   }, [userId]);
 
+  const [auth, setAuth] = useState(() => {
+    const savedAuth = localStorage.getItem('auth');
+    return savedAuth ? JSON.parse(savedAuth) : null;
+  });
+  
   const handleLogin = (userData) => {
-    setUser(userData);
-    // Reset states when logging in
-    setShowFAQ(false);
-    setShowAnalytics(false);
+    const authData = {
+      user: userData,
+      token: userData.token
+    };
+    setAuth(authData);
+    localStorage.setItem('auth', JSON.stringify(authData));
   };
-
+  
   const handleLogout = () => {
-    setUser(null);
+    setAuth(null);
+    localStorage.removeItem('auth');
     setMessages([]);
     setShowFAQ(false);
     setShowAnalytics(false);
+  };
+  
+  // Update your API calls to include the token
+  const makeAuthenticatedRequest = async (url, options = {}) => {
+    if (!auth?.token) throw new Error('No authentication token');
+  
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        'Authorization': `Bearer ${auth.token}`,
+      },
+    });
   };
 
   const handleToggleView = (view) => {
@@ -54,7 +75,7 @@ export default function App() {
   
   const fetchQuickReplies = async () => {
     try {
-      const response = await fetch('http://localhost:9090/api/university/quick-replies');
+      const response = await makeAuthenticatedRequest('http://localhost:9090/api/university/quick-replies');
       const data = await response.json();
       setQuickReplies(data);
     } catch (error) {
