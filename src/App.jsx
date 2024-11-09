@@ -198,10 +198,10 @@ export default function App() {
               <span>Analytics</span>
             </button>
             <button
-              onClick={() => handleToggleView(showFAQ && user.role != 'admin' ? 'chat' : 'faq')}
+              onClick={() => handleToggleView(showFAQ && user.role !== 'admin' ? 'chat' : 'faq')}
               className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100"
             >
-              {showFAQ && user.role != 'admin'? 'Chat Mode': 'FAQ Mode'}
+              {showFAQ && user.role !== 'admin'? 'Chat Mode': 'FAQ Mode'}
             </button>
             <button
               onClick={handleLogout}
