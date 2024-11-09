@@ -1,70 +1,199 @@
-# Getting Started with Create React App
+# University FAQ Chatbot UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This is a React-based user interface for the University FAQ Chatbot system. The application provides an interactive chat interface, FAQ management system, and analytics dashboard for tracking user queries.
 
-## Available Scripts
+## Features
+- Interactive Chat Interface
+- FAQ Management Dashboard
+- Category-based Analytics
+- Quick Reply System
+- Real-time Search
+- User Feedback System
 
-In the project directory, you can run:
+## Tech Stack
+- React 18
+- Tailwind CSS
+- Lucide React Icons
+- Recharts for Analytics
+- Modern UI Components
 
-### `npm start`
+## Prerequisites
+```bash
+Node.js >= 14.0.0
+npm >= 6.14.0
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+```bash
+git clone [<your-repository-url>](https://github.com/zmehta2/university-chatbot-ui.git)
+cd university-faq-chatbot-ui
+```
 
-### `npm test`
+2. Install dependencies:
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install additional required packages:
+```bash
+npm install recharts lucide-react
+```
 
-### `npm run build`
+## Project Structure
+```
+src/
+  ├── components/
+  │   ├── ChatAnalytics.jsx    # ChatBot
+  │   ├── FAQDashboard.jsx     # FAQ management interface
+  │   ├── AnalyticsView.jsx    # Analytics dashboard
+  │   ├── Login.jsx            # Login/Logout Handling
+  ├── App.jsx                  # Main application component
+  ├── context/
+  │   ├── AuthContext.js       # To Handle User roles 
+  ├── index.js                 # Entry point
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Key Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### App.jsx
+- Main application container
+- Handles chat functionality
+- Manages user authentication
+- Routes between different views
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### FAQDashboard.jsx
+- CRUD operations for FAQs
+- Category management
+- Search functionality
+- Filtering capabilities
 
-### `npm run eject`
+### ChatAnalytics.jsx
+- Visualizes chat statistics
+- Category distribution chart
+- User interaction metrics
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## API Integration
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Endpoints Used
+```javascript
+// Chat Endpoints
+POST /api/university/chat-logs
+GET /api/university/chat-logs/user/{userId}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+// FAQ Endpoints
+GET /api/university/faqs
+POST /api/university/faqs
+PUT /api/university/faqs/{id}
+DELETE /api/university/faqs/{id}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+// Category Endpoints
+GET /api/university/categories
+GET /api/university/quick-replies
+```
 
-## Learn More
+## Running the Application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Start the development server:
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Access the application:
+```
+http://localhost:3000
+```
 
-### Code Splitting
+## Features Implementation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Chat Interface
+- Real-time message updates
+- User/Bot message distinction
+- Message history
+- Quick replies
+- Search functionality
 
-### Analyzing the Bundle Size
+### FAQ Management
+- Create, Read, Update, Delete FAQs
+- Category-based organization
+- Search and filter capabilities
+- Bulk operations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Analytics Dashboard
+- Pie chart for category distribution
+- Question frequency analysis
+- User interaction metrics
 
-### Making a Progressive Web App
+## Styling
+- Tailwind CSS for responsive design
+- Custom components following design system
+- Consistent color scheme and typography
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Authentication
+- Admin/User role separation
+- Protected routes
+- Session management
 
-### Advanced Configuration
+## Environment Variables
+Create a `.env` file in the root directory:
+```
+REACT_APP_API_URL=http://localhost:9090/api
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Scripts
+```json
+{
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+```
 
-### Deployment
+## Contributing
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Common Issues and Solutions
 
-### `npm run build` fails to minify
+### Recharts Integration
+If facing issues with Recharts:
+```bash
+npm install recharts --save --force
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### API Connection
+Ensure backend server is running on port 9090 before starting the UI application.
+
+### CORS Issues
+Backend should have CORS configured for localhost:3000.
+
+## Future Enhancements for live project
+- Real-time chat updates
+- Advanced analytics features
+- Multi-language support
+- Dark mode implementation
+
+## Performance Considerations
+- Lazy loading of components
+- Optimized re-renders
+- Efficient state management
+- API response caching
+
+## Testing
+```bash
+npm test
+```
+
+## Build for Production
+```bash
+npm run build
+```
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
