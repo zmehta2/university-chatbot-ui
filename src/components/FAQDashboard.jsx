@@ -49,18 +49,18 @@ const FAQDashboard = () => {
 
    
 
-const handleUpdateFAQ = async () => {
-  if (!editFAQ) return;
-  
-  try {
-    const updatedFAQ = await faqApi.updateFAQ(editFAQ.id, editFAQ);
-    setFaqs(faqs.map(faq => faq.id === updatedFAQ.id ? updatedFAQ : faq));
-    setEditFAQ(null);  // Close the modal
-  } catch (err) {
-    console.error('Error updating FAQ:', err);
-    alert('Failed to update FAQ. Please try again.');
-  }
-};
+    const handleUpdateFAQ = async () => {
+    if (!editFAQ) return;
+    
+    try {
+        const updatedFAQ = await faqApi.updateFAQ(editFAQ.id, editFAQ);
+        setFaqs(faqs.map(faq => faq.id === updatedFAQ.id ? updatedFAQ : faq));
+        setEditFAQ(null);  // Close the modal
+    } catch (err) {
+        console.error('Error updating FAQ:', err);
+        alert('Failed to update FAQ. Please try again.');
+    }
+    };
 
     const filteredFAQs = faqs.filter(faq => {
         const matchesSearch =
